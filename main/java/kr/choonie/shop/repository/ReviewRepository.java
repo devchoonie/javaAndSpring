@@ -12,30 +12,6 @@ import java.util.List;
 @Repository
 public interface ReviewRepository extends JpaRepository<Review, Long> {
 
-   /* @Query(value = "select\n" +
-            " count(distinct oi.order_code) as writableCount\n" +
-            " , group_concat(oi.order_code separator \';\') as orderCodes \n" +
-            "from\n" +
-            "    order_info oi\n" +
-            "inner join\n" +
-            "    order_item oit on oi.order_code = oit.order_code\n" +
-            "inner join\n" +
-            "    product_item pi on oit.product_item_id = pi.product_item_id\n" +
-            "inner join  \n" +
-            "\torder_delivery od on oi.order_code = od.order_code\n" +
-            "where\n" +
-            "    oi.m_id = :mId  \n" +
-            "    and pi.product_id = :productId \n" +
-            "    and oi.order_status_id = 6\n" +
-            "    and now() between od.done_at and date_add(od.done_at, interval 7 day)\n" +
-            "    and not exists (\n" +
-            "        select 1\n" +
-            "        from review r\n" +
-            "        where r.order_code = oi.order_code\n" +
-            "          and r.product_id = pi.product_id\n" +
-            ")", nativeQuery = true)
-    ReviewCounterDto writableCount(@Param("mId") String mId, @Param("productId") int productId);*/
-
 
     @Query(value = "select \n" +
             " \toi.order_code as orderCode ,\n" +
